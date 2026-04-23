@@ -1,4 +1,7 @@
 import { useState } from "react";
+import shopeeLogo from "../images/shopee_logo.png";
+import lazadaLogo from "../images/lazada_logo.png";
+import tokopediaLogo from "../images/tokopedia_logo.png";
 
 const NAV_LINKS = {
   COLLECTION: ["JACKET", "KEMEJA", "OUTER", "TOTEBAG", "JEANS"],
@@ -23,13 +26,13 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-5">
               <a href="#" className="opacity-40 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
-                <img src="./src/images/shopee_logo.png" alt="Shopee" className="h-6 w-auto object-contain" />
+                <img src={shopeeLogo} alt="Shopee" className="h-6 w-auto object-contain" />
               </a>
               <a href="#" className="opacity-40 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
-                <img src="./src/images/lazada_logo.png" alt="Lazada" className="h-5 w-auto object-contain" />
+                <img src={lazadaLogo} alt="Lazada" className="h-5 w-auto object-contain" />
               </a>
               <a href="#" className="opacity-40 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0">
-                <img src="./src/images/tokopedia_logo.png" alt="Tokopedia" className="h-6 w-auto object-contain" />
+                <img src={tokopediaLogo} alt="Tokopedia" className="h-6 w-auto object-contain" />
               </a>
             </div>
           </div>

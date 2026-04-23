@@ -1,4 +1,5 @@
 import { OrangePlus } from "./utils";
+import koreanImg from "../images/korean.png";
 
 export default function Hero() {
   return (
@@ -56,7 +57,7 @@ export default function Hero() {
           {/* Model image — Using generated version based on user photo */}
           <div className="relative z-0 flex-shrink-0 flex items-center justify-center group">
             <img
-              src="./src/images/korean.png"
+              src={koreanImg}
               alt="Fashion model TiiClothes"
               className="object-contain object-bottom transition-transform duration-1000 group-hover:scale-[1.02]"
               style={{ height: "84vh", maxHeight: "800px", width: "auto" }}

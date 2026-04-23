@@ -1,4 +1,7 @@
 import { useState, useRef, useEffect } from "react";
+import model1 from "../images/model1.jpg";
+import model2 from "../images/model2.webp";
+import model3 from "../images/model3.avif";
 
 const TESTIMONIALS = [
   {
@@ -10,7 +13,7 @@ const TESTIMONIALS = [
       { label: "Happy Customers", value: "280K+" },
       { label: "Local Drops", value: "15+" }
     ],
-    image: "./src/images/model1.jpg"
+    image: model1
   },
   {
     id: 2,
@@ -21,7 +24,7 @@ const TESTIMONIALS = [
       { label: "Style Variants", value: "40+" },
       { label: "Cities Reached", value: "25+" }
     ],
-    image: "./src/images/model2.webp"
+    image: model2
   },
   {
     id: 3,
@@ -32,7 +35,7 @@ const TESTIMONIALS = [
       { label: "Fast Delivery", value: "24h" },
       { label: "Quality Check", value: "100%" }
     ],
-    image: "./src/images/model3.avif"
+    image: model3
   }
 ];
 
