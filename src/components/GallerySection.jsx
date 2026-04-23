@@ -68,14 +68,21 @@ export default function GallerySection() {
           <div
             ref={scrollRef}
             onScroll={handleScroll}
-            className="flex gap-4 overflow-x-auto pb-16 pt-8 scrollbar-hide snap-x snap-mandatory px-4"
+            className="flex gap-4 overflow-x-auto pb-16 pt-8 scrollbar-hide snap-x snap-mandatory px-[calc(50%-120px)] md:px-[calc(50%-140px)] scroll-smooth"
           >
             {GALLERY_ITEMS.map((item, i) => (
               <div
                 key={item.id}
-                onClick={() => setActive(i)}
+                onClick={() => {
+                  setActive(i);
+                  const container = scrollRef.current;
+                  const target = container?.querySelectorAll(".gallery-item")[i];
+                  if (target) {
+                    target.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                  }
+                }}
                 className={cx(
-                  "gallery-item flex-shrink-0 snap-center cursor-pointer transition-all duration-1000 ease-out",
+                  "gallery-item flex-shrink-0 snap-center cursor-pointer transition-all duration-700 ease-out",
                   active === i ? "w-[240px] md:w-[280px]" : "w-[160px] md:w-[200px]"
                 )}
               >
