@@ -5,26 +5,19 @@ import Ticker from "./Ticker";
 export default function FeaturedSection() {
   return (
     <section className="bg-white py-24 px-8 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-
-        {/* ── Section label ── */}
-        <div className="flex justify-center mb-14">
-          <SectionLabel>New Drop — 2026 Collection</SectionLabel>
-        </div>
-
-        {/* ── Editorial headline ── */}
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <h2
             className="font-bold leading-[0.85] tracking-tighter text-black uppercase"
-            style={{ fontSize: "clamp(32px, 5.5vw, 56px)" }}
+            style={{ fontSize: "clamp(24px, 4vw, 42px)" }}
           >
-            All&nbsp;—&nbsp;about
+            EVERY MOMENT,
           </h2>
           <h2
             className="font-bold leading-[0.85] tracking-tighter uppercase"
-            style={{ fontSize: "clamp(32px, 5.5vw, 56px)", color: "#FF4D00" }}
+            style={{ fontSize: "clamp(24px, 4vw, 42px)", color: "#FF4D00" }}
           >
-            moments
+            YOUR WAY
           </h2>
 
           <p className="text-xs tracking-[0.35em] text-gray-300 uppercase mt-6">
@@ -77,19 +70,6 @@ export default function FeaturedSection() {
               </div>
             </article>
           ))}
-        </div>
-
-        {/* ── Divider line + count ── */}
-        <div className="mt-16 pt-8 border-t border-gray-50 flex items-center justify-between">
-          <p className="text-[10px] tracking-[0.35em] text-gray-300 uppercase">
-            Menampilkan {FEATURED_PRODUCTS.length} produk
-          </p>
-          <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#FF4D00]" />
-            <p className="text-[10px] tracking-[0.3em] text-gray-300 uppercase">
-              2026 Collection · Yogyakarta
-            </p>
-          </div>
         </div>
       </div>
 

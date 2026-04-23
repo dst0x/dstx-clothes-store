@@ -1,102 +1,118 @@
-import { useState } from "react";
-import { COLLECTIONS } from "./data";
-import { cx, ClipImage, ArrowButton, SectionLabel } from "./utils";
+import { useRef } from "react";
+
+const LOOKBOOK_ITEMS = [
+  {
+    id: 1,
+    title: "Urban Minimalism",
+    subtitle: "A collection of core essentials for the modern city dweller.",
+    image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80",
+    color: "bg-blue-500/10"
+  },
+  {
+    id: 2,
+    title: "Yogyakarta Heritage",
+    subtitle: "Merging traditional craftsmanship with contemporary silhouettes.",
+    image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80",
+    color: "bg-orange-500/10"
+  },
+  {
+    id: 3,
+    title: "Eco-Conscious Series",
+    subtitle: "Designed with sustainability and longevity at its heart.",
+    image: "https://images.unsplash.com/photo-1539109132314-347551cd9c7c?w=800&q=80",
+    color: "bg-green-500/10"
+  },
+  {
+    id: 4,
+    title: "Signature Outerwear",
+    subtitle: "Bold statements for those who define their own rules.",
+    image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80",
+    color: "bg-purple-500/10"
+  }
+];
 
 export default function CollectionsSection() {
-  const [hoveredId, setHoveredId] = useState(1);
+  const scrollRef = useRef(null);
 
   return (
-    <section className="bg-white py-24 px-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-14 items-start">
-
-        {/* Left: images + copy */}
-        <div className="col-span-12 md:col-span-5">
-          <SectionLabel>Our Collections</SectionLabel>
-          <p className="text-xs text-gray-500 mt-6 mb-8 leading-relaxed max-w-xs">
-            Dari klasik yang tak lekang waktu hingga statement piece yang berani — setiap koleksi TiiClothes dirancang dengan penuh niat dan kesadaran estetik.
-          </p>
-          <div className="relative space-y-2">
-            <ClipImage
-              src="https://images.unsplash.com/photo-1520975954732-35dd22299614?w=600&q=80"
-              alt="Collection visual"
-              className="w-full h-72"
-            />
-            <ClipImage
-              src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80"
-              alt="Collection visual 2"
-              className="w-full h-52"
-            />
-          </div>
-          <div className="flex items-center gap-3 mt-5">
-            <span className="text-[#FF4D00] text-xs">✦</span>
-            <p className="text-xs text-gray-400 italic">Bagian dari perjalanan mode lokal Yogyakarta.</p>
-          </div>
-        </div>
-
-        {/* Right: collection list */}
-        <div className="col-span-12 md:col-span-7 pt-4">
-          <h2 className="text-4xl md:text-5xl font-black text-black leading-tight mb-10">
-            Pilih<br />
-            <span className="text-[#FF4D00]">Koleksi</span><br />
-            Favoritmu
+    <section className="bg-[#F8F7F4] py-24 px-8 overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Header Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-2">
+            Atmospheric Archives
           </h2>
-
-          {COLLECTIONS.map((col) => {
-            const isHovered = hoveredId === col.id;
-            return (
-              <div
-                key={col.id}
-                onMouseEnter={() => setHoveredId(col.id)}
-                className={cx(
-                  "py-6 border-b transition-all duration-300 cursor-pointer",
-                  isHovered ? "border-black" : "border-gray-100"
-                )}
-              >
-                {isHovered && col.active ? (
-                  /* Expanded view — NO button, just info */
-                  <div className="flex items-start justify-between gap-6">
-                    <div className="flex-1">
-                      <span className="text-[10px] tracking-widest text-[#FF4D00] uppercase font-bold">Featured ✦</span>
-                      <h4 className="text-2xl font-black text-black mt-1 mb-2">{col.name}</h4>
-                      <p className="text-sm text-gray-500 leading-relaxed">{col.desc}</p>
-                    </div>
-                    {col.image && (
-                      <div
-                        className="w-28 h-32 flex-shrink-0 overflow-hidden shadow-lg"
-                        style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 88% 100%, 0 100%)" }}
-                      >
-                        <img
-                          src={col.image}
-                          alt={col.name}
-                          className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                        />
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-between group">
-                    <div className="flex items-center gap-4">
-                      <span className="text-xs text-gray-200 font-mono">
-                        {String(col.id).padStart(2, "0")}.
-                      </span>
-                      <h4 className={cx(
-                        "font-black transition-all duration-300",
-                        isHovered ? "text-2xl text-black" : "text-xl text-gray-700"
-                      )}>
-                        {col.name}
-                      </h4>
-                    </div>
-                    <ArrowButton
-                      direction="right"
-                      size="sm"
-                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                    />
-                  </div>
-                )}
-              </div>
-            );
-          })}
+          <p className="text-gray-500 text-base md:text-lg font-light leading-relaxed">
+            A visual diary of moments captured across the archipelago.
+          </p>
         </div>
+
+        {/* Lookbook Cards Container */}
+        <div className="relative">
+          <div 
+            ref={scrollRef}
+            className="flex gap-8 overflow-x-auto pb-12 scrollbar-hide snap-x snap-mandatory"
+          >
+            {LOOKBOOK_ITEMS.map((item, index) => (
+              <div 
+                key={item.id}
+                className={`flex-shrink-0 w-[300px] md:w-[400px] snap-start group cursor-pointer transition-all duration-700 hover:-translate-y-4`}
+              >
+                <div className={`relative aspect-[4/5] rounded-[40px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-700 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.2)]`}>
+                  {/* Background overlay for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                  
+                  {/* Main Image */}
+                  <img 
+                    src={item.image} 
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+
+                  {/* Content Overlay */}
+                  <div className="absolute bottom-10 left-10 right-10 z-20 transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    <p className="text-white/60 text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Issue {String(index + 1).padStart(2, "0")}</p>
+                    <h3 className="text-white text-2xl font-bold mb-2">{item.title}</h3>
+                    <p className="text-white/80 text-sm leading-relaxed font-light line-clamp-2">
+                      {item.subtitle}
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Visual indicator / number below */}
+                <div className="mt-8 flex items-center gap-4 px-4 opacity-40 group-hover:opacity-100 transition-opacity">
+                   <span className="text-[10px] font-bold tracking-widest text-black uppercase">Look 0{index + 1}</span>
+                   <div className="h-px flex-1 bg-black/10 group-hover:bg-black/30 transition-colors" />
+                </div>
+              </div>
+            ))}
+
+            {/* Newsletter/CTA Card (Based on the blue section in reference) */}
+            <div className="flex-shrink-0 w-[300px] md:w-[450px] snap-start">
+               <div className="h-full bg-[#6366F1] rounded-[40px] p-12 flex flex-col justify-between text-white shadow-[0_30px_60px_-15px_rgba(99,102,241,0.3)]">
+                  <div>
+                    <h3 className="text-3xl font-bold mb-6 leading-tight">Join the Archive</h3>
+                    <p className="text-white/80 text-lg leading-relaxed font-light mb-10">
+                      Subscribe to our visual diary and get early access to our limited editions.
+                    </p>
+                    <div className="space-y-4">
+                       <input 
+                         type="email" 
+                         placeholder="your@email.com"
+                         className="w-full bg-white/10 border border-white/20 rounded-full px-8 py-4 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
+                       />
+                       <button className="w-full bg-white text-[#6366F1] font-bold rounded-full py-4 hover:bg-opacity-90 transition-all">
+                         Subscribe
+                       </button>
+                    </div>
+                  </div>
+                  <p className="text-white/40 text-xs tracking-widest uppercase">© TiiClothes 2026</p>
+               </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

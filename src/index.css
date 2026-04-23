@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html, body {
+    font-family: 'Lexend', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+}

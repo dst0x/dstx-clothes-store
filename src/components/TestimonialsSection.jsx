@@ -1,104 +1,184 @@
-import { useState } from "react";
-import { TESTIMONIALS } from "./data";
-import { ArrowButton, SectionLabel } from "./utils";
+import { useState, useRef, useEffect } from "react";
+
+const TESTIMONIALS = [
+  {
+    id: 1,
+    quote: "Koleksi TiiClothes selalu memberikan sentuhan premium yang berbeda. Kualitas bahan dan jahitannya benar-benar terasa lokal tapi berkelas internasional.",
+    author: "Fauziah Rahma",
+    role: "Fashion Enthusiast, Yogyakarta",
+    stats: [
+      { label: "Happy Customers", value: "280K+" },
+      { label: "Local Drops", value: "15+" }
+    ],
+    image: "./src/images/model1.jpg"
+  },
+  {
+    id: 2,
+    quote: "Sangat suka dengan konsep minimalisnya. Baju-bajunya sangat versatille, bisa dipakai untuk hangout santai maupun acara formal dengan styling yang tepat.",
+    author: "Larasati Putri",
+    role: "Content Creator",
+    stats: [
+      { label: "Style Variants", value: "40+" },
+      { label: "Cities Reached", value: "25+" }
+    ],
+    image: "./src/images/model2.webp"
+  },
+  {
+    id: 3,
+    quote: "Pengiriman cepat dan packingnya sangat aman. Detail di setiap produknya menunjukkan dedikasi TiiClothes dalam menjaga kualitas UMKM Yogyakarta.",
+    author: "Dimas Pratama",
+    role: "Entrepreneur",
+    stats: [
+      { label: "Fast Delivery", value: "24h" },
+      { label: "Quality Check", value: "100%" }
+    ],
+    image: "./src/images/model3.avif"
+  }
+];
 
 export default function TestimonialsSection() {
   const [current, setCurrent] = useState(0);
-  const total = TESTIMONIALS.length;
-  const prev = () => setCurrent((c) => (c - 1 + total) % total);
-  const next = () => setCurrent((c) => (c + 1) % total);
-  const t = TESTIMONIALS[current];
+  const [dragStart, setDragStart] = useState(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const containerRef = useRef(null);
+
+  const next = () => setCurrent((prev) => (prev + 1) % TESTIMONIALS.length);
+  const prev = () => setCurrent((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+
+  // Mouse / Touch Drag Logic
+  const handleStart = (e) => {
+    const x = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+    setDragStart(x);
+  };
+
+  const handleMove = (e) => {
+    if (dragStart === null) return;
+    const x = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+    const diff = x - dragStart;
+    setDragOffset(diff);
+  };
+
+  const handleEnd = () => {
+    if (dragOffset > 100) prev();
+    else if (dragOffset < -100) next();
+    setDragStart(null);
+    setDragOffset(0);
+  };
 
   return (
-    <section className="bg-white py-24 px-8">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-[#F4F3F0] py-24 px-8 overflow-hidden select-none">
+      <div className="max-w-6xl mx-auto">
 
-        {/* Section header */}
-        <div className="flex items-center justify-between mb-16">
-          <div>
-            <SectionLabel>Testimonial Pelanggan</SectionLabel>
-            <h2 className="text-4xl md:text-5xl font-black text-black leading-tight mt-4">
-              Kata Mereka<br />
-              <span className="text-[#FF4D00]">Tentang Kami</span>
-            </h2>
-          </div>
-          <div className="hidden md:flex items-baseline gap-2">
-            <span className="text-6xl font-black text-black">{String(current + 1).padStart(2, "0")}</span>
-            <span className="text-2xl text-gray-200">/ {String(total).padStart(2, "0")}</span>
+        {/* Centered Header */}
+        <div className="text-center mb-16 relative">
+          <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-4">
+            Kisah Komunitas Kami
+          </h2>
+          <p className="text-gray-400 text-sm md:text-base max-w-lg mx-auto leading-relaxed font-light">
+            Cerita nyata dari mereka yang mengenali makna di setiap jahitan dan desain yang kami hadirkan.
+          </p>
+
+          {/* Navigation Buttons (Absolute for Desktop) */}
+          <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 right-0 gap-3">
+            <button
+              onClick={prev}
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300"
+            >
+              ←
+            </button>
+            <button
+              onClick={next}
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300"
+            >
+              →
+            </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-10 items-start">
-          {/* Left: photo + identity */}
-          <div className="col-span-12 md:col-span-4">
-            <div
-              className="w-full max-w-[240px] overflow-hidden shadow-xl"
-              style={{ clipPath: "polygon(0 0, 100% 0, 100% 88%, 85% 100%, 0 100%)" }}
-            >
-              <img
-                src={t.image}
-                alt={t.name}
-                className="w-full aspect-[3/4] object-cover object-top transition-all duration-700 hover:scale-105"
-              />
-            </div>
-            <div className="mt-5 pl-1">
-              <p className="font-black text-base text-black">{t.name}</p>
-              <p className="text-xs text-gray-400 tracking-widest mt-0.5">{t.title}</p>
-              {/* Stars */}
-              <div className="flex items-center gap-1 mt-3">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#FF4D00">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
+        {/* Carousel Container */}
+        <div
+          ref={containerRef}
+          onMouseDown={handleStart}
+          onMouseMove={handleMove}
+          onMouseUp={handleEnd}
+          onMouseLeave={handleEnd}
+          onTouchStart={handleStart}
+          onTouchMove={handleMove}
+          onTouchEnd={handleEnd}
+          className="cursor-grab active:cursor-grabbing transition-transform duration-500 ease-out"
+          style={{
+            transform: `translateX(${dragOffset}px)`,
+          }}
+        >
+          <div
+            key={current}
+            className="bg-white rounded-[40px] shadow-[0_40px_100px_rgba(0,0,0,0.03)] border border-gray-100/50 flex flex-col lg:flex-row overflow-hidden animate-in fade-in slide-in-from-right-12 duration-700"
+          >
+
+            {/* Left Side: Text & Stats */}
+            <div className="flex-1 p-10 md:p-16 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100/50">
+              <div>
+                <div className="flex items-center gap-2 mb-12">
+                  <div className="w-2 h-2 bg-[#FF4D00] rounded-full" />
+                  <span className="text-sm font-black tracking-[0.2em] uppercase text-black italic">TIICLOTHES</span>
+                </div>
+
+                <blockquote className="text-xl md:text-2xl font-medium text-gray-900 leading-[1.6] mb-12">
+                  "{TESTIMONIALS[current].quote}"
+                </blockquote>
+              </div>
+
+              <div className="flex gap-12">
+                {TESTIMONIALS[current].stats.map((stat) => (
+                  <div key={stat.label}>
+                    <p className="text-3xl font-black text-black mb-1">{stat.value}</p>
+                    <p className="text-[10px] tracking-widest text-gray-400 uppercase font-medium">{stat.label}</p>
+                  </div>
                 ))}
-                <span className="text-xs text-gray-400 ml-1">{t.rating}.0 ({t.reviews} ulasan)</span>
               </div>
             </div>
-          </div>
 
-          {/* Right: quote */}
-          <div className="col-span-12 md:col-span-8 flex flex-col justify-between h-full">
-            {/* Large quote mark */}
-            <div
-              className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-3xl text-gray-200 mb-8 font-serif"
-            >
-              "
-            </div>
-            <blockquote className="text-2xl md:text-3xl font-light italic text-gray-800 leading-[1.4] tracking-normal flex-1">
-              "{t.quote}"
-            </blockquote>
-
-            {/* Niche credibility row */}
-            <div className="mt-10 pt-6 border-t border-gray-100 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#FF4D00]/10 flex items-center justify-center">
-                  <span className="text-[#FF4D00] text-lg">✦</span>
+            {/* Right Side: Visual & Author */}
+            <div className="flex-1 p-10 md:p-16 bg-gray-50/50 flex flex-col items-center justify-center relative">
+              <div className="relative w-full max-w-sm mb-10">
+                <div className="absolute top-0 left-0 w-12 h-12 bg-white rounded-2xl shadow-lg flex items-center justify-center animate-bounce duration-[3000ms]">
+                  <span className="text-xs">✦</span>
                 </div>
-                <div>
-                  <p className="text-xs font-bold text-black tracking-widest uppercase">Verified Purchase</p>
-                  <p className="text-[10px] text-gray-400">Pembelian terverifikasi melalui platform resmi</p>
+                <div className="absolute top-1/4 right-0 bg-white px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 border border-gray-100">
+                  <div className="w-4 h-4 bg-[#FF4D00] rounded-full" />
+                  <span className="text-[9px] font-bold tracking-widest uppercase">Verified</span>
+                </div>
+
+                <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#FF4D00]/20 to-transparent rounded-full animate-pulse" />
+                  <img
+                    src={TESTIMONIALS[current].image}
+                    alt={TESTIMONIALS[current].author}
+                    className="w-full h-full object-cover rounded-full border-8 border-white shadow-2xl relative z-10"
+                  />
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <ArrowButton direction="left" onClick={prev} size="sm" />
-                <ArrowButton direction="right" onClick={next} size="sm" />
+
+              <div className="text-center">
+                <h4 className="text-lg font-bold text-black mb-1">{TESTIMONIALS[current].author}</h4>
+                <p className="text-xs text-gray-400 tracking-wider font-light">{TESTIMONIALS[current].role}</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Progress dots */}
+        {/* Progress Dots */}
         <div className="flex justify-center gap-2 mt-12">
           {TESTIMONIALS.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`h-1 rounded-full transition-all duration-300 ${
-                i === current ? "w-10 bg-black" : "w-2 bg-gray-200"
-              }`}
+              className={`h-1.5 rounded-full transition-all duration-500 ${i === current ? "w-12 bg-black" : "w-3 bg-gray-300 hover:bg-gray-400"
+                }`}
             />
           ))}
         </div>
+
       </div>
     </section>
   );

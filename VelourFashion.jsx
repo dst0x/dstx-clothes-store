@@ -7,7 +7,6 @@ import FeaturedSection      from "./src/components/FeaturedSection";
 import CategoriesSection    from "./src/components/CategoriesSection";
 import TestimonialsSection  from "./src/components/TestimonialsSection";
 import GallerySection       from "./src/components/GallerySection";
-import CollectionsSection   from "./src/components/CollectionsSection";
 import Footer               from "./src/components/Footer";
 
 export default function App() {
@@ -36,11 +35,9 @@ export default function App() {
 
       <main>
         <Hero />
-        <FeaturedSection />
         <CategoriesSection />
         <TestimonialsSection />
         <GallerySection />
-        <CollectionsSection />
         {/* EcommerceSection removed — marketplace links live in the Footer action band */}
       </main>
 
