@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Lexend', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
       },
       keyframes: {
         ticker: {

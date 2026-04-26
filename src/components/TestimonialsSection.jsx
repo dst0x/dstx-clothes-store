@@ -48,7 +48,6 @@ export default function TestimonialsSection() {
   const next = () => setCurrent((prev) => (prev + 1) % TESTIMONIALS.length);
   const prev = () => setCurrent((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
 
-  // Mouse / Touch Drag Logic
   const handleStart = (e) => {
     const x = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
     setDragStart(x);
@@ -72,7 +71,6 @@ export default function TestimonialsSection() {
     <section className="bg-[#F4F3F0] py-24 px-8 overflow-hidden select-none">
       <div className="max-w-6xl mx-auto">
 
-        {/* Centered Header */}
         <div className="text-center mb-16 relative">
           <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-4">
             Kisah Komunitas Kami
@@ -81,7 +79,6 @@ export default function TestimonialsSection() {
             Cerita nyata dari mereka yang mengenali makna di setiap jahitan dan desain yang kami hadirkan.
           </p>
 
-          {/* Navigation Buttons (Absolute for Desktop) */}
           <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 right-0 gap-3">
             <button
               onClick={prev}
@@ -98,7 +95,6 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Carousel Container */}
         <div
           ref={containerRef}
           onMouseDown={handleStart}
@@ -118,7 +114,6 @@ export default function TestimonialsSection() {
             className="bg-white rounded-[40px] shadow-[0_40px_100px_rgba(0,0,0,0.03)] border border-gray-100/50 flex flex-col lg:flex-row overflow-hidden animate-in fade-in slide-in-from-right-12 duration-700"
           >
 
-            {/* Left Side: Text & Stats */}
             <div className="flex-1 p-10 md:p-16 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gray-100/50">
               <div>
                 <div className="flex items-center gap-2 mb-12">
@@ -141,7 +136,6 @@ export default function TestimonialsSection() {
               </div>
             </div>
 
-            {/* Right Side: Visual & Author */}
             <div className="flex-1 p-10 md:p-16 bg-gray-50/50 flex flex-col items-center justify-center relative">
               <div className="relative w-full max-w-sm mb-10">
                 <div className="absolute top-0 left-0 w-12 h-12 bg-white rounded-2xl shadow-lg flex items-center justify-center animate-bounce duration-[3000ms]">
@@ -157,6 +151,7 @@ export default function TestimonialsSection() {
                   <img
                     src={TESTIMONIALS[current].image}
                     alt={TESTIMONIALS[current].author}
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-full border-8 border-white shadow-2xl relative z-10"
                   />
                 </div>
@@ -170,7 +165,6 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Progress Dots */}
         <div className="flex justify-center gap-2 mt-12">
           {TESTIMONIALS.map((_, i) => (
             <button

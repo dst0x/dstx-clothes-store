@@ -15,10 +15,8 @@ export default function Footer() {
     <footer className="bg-white text-black py-24 px-8 border-t border-gray-50">
       <div className="max-w-7xl mx-auto">
         
-        {/* Main Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-24">
           
-          {/* Brand & Mission */}
           <div className="col-span-2 lg:col-span-1">
             <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-8">TIICLOTHES</h3>
             <p className="text-[13px] text-gray-400 leading-[1.8] max-w-[220px] mb-8 font-light">
@@ -37,7 +35,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Nav Columns */}
           {Object.entries(NAV_LINKS).map(([header, links]) => (
             <div key={header}>
               <h4 className="text-[11px] font-bold tracking-[0.2em] uppercase mb-8 text-gray-900">
@@ -59,7 +56,6 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom Bar */}
         <div className="pt-10 border-t border-gray-50 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-[10px] tracking-[0.15em] text-gray-300 uppercase">
             © 2024 TIICLOTHES STUDIO. ALL RIGHTS RESERVED.

@@ -1,5 +1,3 @@
-// ─── DATA ─────────────────────────────────────────────────────────────────────
-
 export const CATEGORIES = [
   { id: "01", name: "Shirt",  count: 174 },
   { id: "02", name: "Jacket", count: 361, active: true },
@@ -38,7 +36,6 @@ export const TESTIMONIALS = [
   },
 ];
 
-// Products used in the "All About Moments" 3-column grid
 export const FEATURED_PRODUCTS = [
   {
     id: 1,

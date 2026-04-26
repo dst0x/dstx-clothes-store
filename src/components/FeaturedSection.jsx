@@ -25,7 +25,6 @@ export default function FeaturedSection() {
           </p>
         </div>
 
-        {/* ── 3-column equal product grid ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURED_PRODUCTS.slice(0, 3).map((product, i) => (
             <article
@@ -33,25 +32,22 @@ export default function FeaturedSection() {
               className="group cursor-pointer"
               style={{ animationDelay: `${i * 0.08}s` }}
             >
-              {/* Image — fixed aspect ratio 3/4, fully consistent */}
               <div className="relative overflow-hidden bg-[#F4F3F0] w-full aspect-[3/4]">
                 <img
                   src={product.image}
                   alt={product.title}
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 />
 
-                {/* Hover veil */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-all duration-500" />
 
-                {/* Number badge */}
                 <div className="absolute top-4 left-4 w-8 h-8 bg-white flex items-center justify-center">
                   <span className="font-black text-[10px] text-black tracking-wider">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
 
-                {/* Hover label */}
                 <div className="absolute bottom-4 left-4 right-4 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">
                   <span className="text-[9px] tracking-[0.25em] text-white uppercase font-medium">
                     Lihat Detail →
@@ -59,7 +55,6 @@ export default function FeaturedSection() {
                 </div>
               </div>
 
-              {/* Caption row */}
               <div className="mt-4 px-0.5">
                 <p className="font-black text-[15px] text-black leading-snug tracking-tight">
                   {product.title}
@@ -73,7 +68,6 @@ export default function FeaturedSection() {
         </div>
       </div>
 
-      {/* ── Ticker strip ── */}
       <div className="mt-24 -mx-8">
         <Ticker />
       </div>

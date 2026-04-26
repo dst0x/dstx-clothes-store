@@ -35,13 +35,11 @@ export default function Navbar() {
             <span className={cx("w-4 h-[1.5px] bg-black transition-all duration-300", menuOpen && "-rotate-45 -translate-y-[6.5px] w-6")} />
           </button>
 
-          {/* Logo */}
           <a href="#" className="flex flex-col items-center">
             <span className="font-black text-lg tracking-[0.35em] text-black uppercase leading-none">TiiClothes</span>
             <span className="text-[8px] tracking-[0.2em] text-gray-400 uppercase mt-0.5">Yogyakarta Fashion House</span>
           </a>
 
-          {/* Right icons */}
           <div className="flex items-center gap-4">
             <button className="text-black hover:text-[#FF4D00] transition-colors" aria-label="Search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -60,7 +58,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Full-screen menu overlay */}
       <div
         className={cx(
           "fixed inset-0 z-40 bg-black transition-all duration-500 flex flex-col justify-between px-10 py-28",

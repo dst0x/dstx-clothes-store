@@ -4,7 +4,7 @@
 
 @layer base {
   html, body {
-    font-family: 'Lexend', sans-serif;
+    font-family: 'Inter', sans-serif;
     overflow-x: hidden;
     width: 100%;
     position: relative;

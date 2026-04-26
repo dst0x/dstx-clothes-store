@@ -1,5 +1,3 @@
-// ─── SHARED UTILITIES & BASE COMPONENTS ─────────────────────────────────────
-
 export const cx = (...classes) => classes.filter(Boolean).join(" ");
 
 export function OrangePlus({ size = 24, className = "" }) {

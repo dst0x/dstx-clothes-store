@@ -1,22 +1,19 @@
-// ─── TIICLOTHES — Main App Entry ──────────────────────────────────────────────
-// Yogyakarta Fashion House · Est. 2020
-
+import { lazy, Suspense } from "react";
 import Navbar               from "./src/components/Navbar";
 import Hero                 from "./src/components/Hero";
-import FeaturedSection      from "./src/components/FeaturedSection";
-import CategoriesSection    from "./src/components/CategoriesSection";
-import TestimonialsSection  from "./src/components/TestimonialsSection";
-import GallerySection       from "./src/components/GallerySection";
-import Footer               from "./src/components/Footer";
+
+const FeaturedSection      = lazy(() => import("./src/components/FeaturedSection"));
+const CategoriesSection    = lazy(() => import("./src/components/CategoriesSection"));
+const TestimonialsSection  = lazy(() => import("./src/components/TestimonialsSection"));
+const GallerySection       = lazy(() => import("./src/components/GallerySection"));
+const Footer               = lazy(() => import("./src/components/Footer"));
 
 export default function App() {
   return (
     <div className="font-sans antialiased bg-white">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,900&family=Barlow+Condensed:wght@400;600;700;900&display=swap');
-
-        * { font-family: 'Barlow', sans-serif; }
-        h1, h2, h3, h4 { font-family: 'Barlow Condensed', sans-serif; }
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Inter', sans-serif; font-weight: 700; }
 
         @keyframes ticker {
           0%   { transform: translateX(0); }
@@ -35,13 +32,16 @@ export default function App() {
 
       <main>
         <Hero />
-        <CategoriesSection />
-        <TestimonialsSection />
-        <GallerySection />
-        {/* EcommerceSection removed — marketplace links live in the Footer action band */}
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF4D00]"></div></div>}>
+          <CategoriesSection />
+          <TestimonialsSection />
+          <GallerySection />
+        </Suspense>
       </main>
 
-      <Footer />
+      <Suspense fallback={<div className="h-20"></div>}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }
