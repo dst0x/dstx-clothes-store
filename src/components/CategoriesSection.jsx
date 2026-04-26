@@ -55,7 +55,7 @@ const WOMEN_CATEGORY_CARDS = [
 
 export default function CategoriesSection() {
   return (
-    <section className="bg-[#F4F3F0] py-24 px-8 overflow-hidden border-t border-gray-200/50">
+    <section id="categories" className="bg-[#F4F3F0] py-24 px-8 overflow-hidden border-t border-gray-200/50">
       <div className="max-w-7xl mx-auto">
 
         <div className="mb-20 text-center flex flex-col items-center">

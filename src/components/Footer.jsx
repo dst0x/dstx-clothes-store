@@ -12,7 +12,7 @@ const NAV_LINKS = {
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-black py-24 px-8 border-t border-gray-50">
+    <footer id="service" className="bg-white text-black py-24 px-8 border-t border-gray-50">
       <div className="max-w-7xl mx-auto">
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-24">

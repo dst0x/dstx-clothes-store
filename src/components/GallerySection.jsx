@@ -66,7 +66,7 @@ export default function GallerySection() {
   }, [isTransitioning]);
 
   return (
-    <section className="bg-[#F8F7F4] py-24 overflow-hidden">
+    <section id="lookbook" className="bg-[#F8F7F4] py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-8">
 
         <div className="flex flex-col items-center text-center mb-16">

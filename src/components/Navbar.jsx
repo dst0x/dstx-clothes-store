@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 import { cx } from "./utils";
+import shopeeLogo from "../images/shopee_logo.png";
+import tokopediaLogo from "../images/tokopedia_logo.png";
 
-const NAV_ITEMS = ["Collections", "New Arrivals", "Categories", "About"];
+const NAV_ITEMS = [
+  { name: "Home", href: "#home" },
+  { name: "Categories", href: "#categories" },
+  { name: "Lookbook", href: "#lookbook" },
+  { name: "Service", href: "#service" }
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,6 +19,18 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 300);
+  };
 
   return (
     <>
@@ -24,7 +43,6 @@ export default function Navbar() {
         )}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="w-10 h-10 flex flex-col items-center justify-center gap-[5px] group"
@@ -60,44 +78,71 @@ export default function Navbar() {
 
       <div
         className={cx(
-          "fixed inset-0 z-40 bg-black transition-all duration-500 flex flex-col justify-between px-10 py-28",
+          "fixed inset-0 z-40 bg-black transition-all duration-500 flex flex-col justify-between px-10 md:px-20 py-16 md:py-24",
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
-        <ul className="space-y-2">
-          {NAV_ITEMS.map((item, i) => (
-            <li
-              key={item}
-              className="overflow-hidden"
-              style={{ transitionDelay: `${i * 60}ms` }}
-            >
-              <a
-                href="#"
-                onClick={() => setMenuOpen(false)}
-                className={cx(
-                  "block text-5xl md:text-7xl font-black text-white uppercase tracking-tight hover:text-[#FF4D00] transition-all duration-300 leading-tight",
-                  menuOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-                )}
-                style={{ transition: `transform 0.4s ease ${i * 0.08}s, opacity 0.4s ease ${i * 0.08}s, color 0.2s` }}
-              >
-                {item}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-start justify-between mb-12">
+          <p className="text-[10px] tracking-[0.3em] text-gray-500 uppercase">Yogyakarta Fashion House</p>
+        </div>
 
-        <div className="flex items-end justify-between">
-          <div>
-            <p className="text-xs tracking-widest text-gray-500 mb-1">Find us on</p>
-            <div className="flex gap-3">
-              {["Shopee", "Tokopedia", "Instagram"].map((s) => (
-                <a key={s} href="#" className="text-xs text-gray-400 hover:text-white transition-colors border border-gray-700 px-3 py-1 rounded-full">
-                  {s}
+        <div className="flex-1 flex flex-col justify-center">
+          <ul className="space-y-0">
+            {NAV_ITEMS.map((item, i) => (
+              <li
+                key={item.name}
+                className="overflow-hidden"
+              >
+                <a
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={cx(
+                    "block text-6xl md:text-8xl font-black text-white uppercase tracking-tighter hover:text-[#FF4D00] transition-all duration-300 leading-[0.9]",
+                    menuOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+                  )}
+                  style={{ transition: `transform 0.5s ease ${i * 0.1}s, opacity 0.5s ease ${i * 0.1}s, color 0.3s` }}
+                >
+                  {item.name}
                 </a>
-              ))}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-16">
+            <p className="text-sm text-gray-400 max-w-md leading-relaxed">
+              Timeless style. Modern edge.<br />
+              Made for you.
+            </p>
+            <button className="mt-8 text-xs tracking-[0.2em] text-white uppercase border-b border-white pb-1 hover:text-[#FF4D00] hover:border-[#FF4D00] transition-colors inline-flex items-center gap-2">
+              Explore Now
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="flex items-end justify-between pt-12 border-t border-gray-800">
+          <div>
+            <p className="text-[10px] tracking-[0.2em] text-gray-600 uppercase mb-3">Find us on</p>
+            <div className="flex items-center gap-4">
+              <a href="#" className="flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors">
+                <img src={shopeeLogo} alt="Shopee" className="w-5 h-5 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                Shopee
+              </a>
+              <a href="#" className="flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors">
+                <img src={tokopediaLogo} alt="Tokopedia" className="w-5 h-5 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                Tokopedia
+              </a>
+              <a href="#" className="flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-60 hover:opacity-100 transition-opacity">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                Instagram
+              </a>
             </div>
           </div>
-          <p className="text-xs text-gray-600">© 2026 TiiClothes</p>
+          <p className="text-[10px] text-gray-600 tracking-wider">© 2026 TiiClothes</p>
         </div>
       </div>
     </>

@@ -3,7 +3,7 @@ import koreanImg from "../images/korean.png";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[80vh] bg-[#F4F3F0] flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-[80vh] bg-[#F4F3F0] flex items-center overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-[10%]  top-0 bottom-0 border-l border-dashed border-gray-300/50" />
         <div className="absolute right-[10%] top-0 bottom-0 border-r border-dashed border-gray-300/50" />

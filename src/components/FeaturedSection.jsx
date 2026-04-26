@@ -4,7 +4,7 @@ import Ticker from "./Ticker";
 
 export default function FeaturedSection() {
   return (
-    <section className="bg-white py-24 px-8 overflow-hidden">
+    <section id="new-arrivals" className="bg-white py-24 px-8 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <h2
