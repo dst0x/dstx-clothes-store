@@ -37,6 +37,7 @@ export default function FeaturedSection() {
                   src={product.image}
                   alt={product.title}
                   loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 />
 

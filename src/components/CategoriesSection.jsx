@@ -71,7 +71,9 @@ export default function CategoriesSection() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  loading="lazy"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
                   className="w-[85%] h-auto object-contain transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4 bg-black/5 backdrop-blur-sm text-black text-[9px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full">
@@ -99,6 +101,7 @@ export default function CategoriesSection() {
                   src={item.image}
                   alt={item.title}
                   loading="lazy"
+                  decoding="async"
                   className="w-[85%] h-auto object-contain transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4 bg-[#FF4D00]/10 backdrop-blur-sm text-[#FF4D00] text-[9px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full">

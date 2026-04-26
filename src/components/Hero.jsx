@@ -54,6 +54,7 @@ export default function Hero() {
               alt="Fashion model TiiClothes"
               loading="eager"
               fetchpriority="high"
+              decoding="async"
               className="object-contain object-bottom transition-transform duration-1000 group-hover:scale-[1.02]"
               style={{ height: "84vh", maxHeight: "800px", width: "auto" }}
             />
@@ -86,7 +87,7 @@ export default function Hero() {
                 "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80",
                 "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=100&q=80",
               ].map((src, i) => (
-                <img key={i} src={src} loading="lazy" className="w-8 h-8 rounded-full border-2 border-[#F4F3F0] object-cover" alt="" />
+                <img key={i} src={src} loading="lazy" decoding="async" className="w-8 h-8 rounded-full border-2 border-[#F4F3F0] object-cover" alt="" />
               ))}
             </div>
             <div className="w-8 h-8 rounded-full bg-[#FF4D00] flex items-center justify-center text-white text-sm font-bold">+</div>

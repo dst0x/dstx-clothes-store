@@ -152,6 +152,7 @@ export default function TestimonialsSection() {
                     src={TESTIMONIALS[current].image}
                     alt={TESTIMONIALS[current].author}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover rounded-full border-8 border-white shadow-2xl relative z-10"
                   />
                 </div>
