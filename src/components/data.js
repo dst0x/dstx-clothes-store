@@ -76,18 +76,18 @@ export const FEATURED_PRODUCTS = [
 ];
 
 export const GALLERY_ITEMS = [
-  { id: 1, image: "https://images.unsplash.com/photo-1516826957135-700dedea698c?w=1200&q=90", label: "Look 01" },
-  { id: 2, image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1200&q=90", label: "Look 02" },
-  { id: 3, image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=90", label: "Look 03" },
-  { id: 4, image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200&q=90", label: "Look 04" },
-  { id: 5, image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=90", label: "Look 05" },
-  { id: 6, image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=1200&q=90", label: "Look 06" },
-  { id: 7, image: "https://images.unsplash.com/photo-1554412930-c71286901968?w=1200&q=90", label: "Look 07" },
-  { id: 8, image: "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=1200&q=90", label: "Look 08" },
-  { id: 9, image: "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=1200&q=90", label: "Look 09" },
-  { id: 10, image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=1200&q=90", label: "Look 10" },
-  { id: 11, image: "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=1200&q=90", label: "Look 11" },
-  { id: 12, image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1200&q=90", label: "Look 12" },
+  { id: 1, image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1200&q=90", label: "Bomber Classic" },
+  { id: 2, image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=1200&q=90", label: "Leather Bomber" },
+  { id: 3, image: "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=1200&q=90", label: "Varsity Heritage" },
+  { id: 4, image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200&q=90", label: "Urban Bomber" },
+  { id: 5, image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=90", label: "Denim Jacket" },
+  { id: 6, image: "https://images.unsplash.com/photo-1516826957135-700dedea698c?w=1200&q=90", label: "Suede Bomber" },
+  { id: 7, image: "https://images.unsplash.com/photo-1554412930-c71286901968?w=1200&q=90", label: "Windbreaker" },
+  { id: 8, image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1200&q=90", label: "Coach Jacket" },
+  { id: 9, image: "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=1200&q=90", label: "Puffer Jacket" },
+  { id: 10, image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=1200&q=90", label: "Track Jacket" },
+  { id: 11, image: "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=1200&q=90", label: "Harrington" },
+  { id: 12, image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=90", label: "Flight Jacket" },
 ];
 
 export const COLLECTIONS = [
