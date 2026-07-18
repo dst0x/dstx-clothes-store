@@ -1,5 +1,5 @@
 import { OrangePlus } from "./utils";
-import koreanImg from "../images/korean.png";
+import koreanImg from "../images/korean.webp";
 
 export default function Hero() {
   return (
@@ -77,24 +77,6 @@ export default function Hero() {
           <p className="text-[8px] md:text-xs text-gray-400 mb-4 leading-relaxed italic">
             Koleksi premium dari Yogyakarta. Dirancang dengan cermat, dibuat untuk gaya hidup modern yang dinamis.
           </p>
-        </div>
-
-        <div className="absolute bottom-20 right-10 text-right z-10">
-          <div className="flex items-center gap-2 justify-end mb-3">
-            <div className="flex -space-x-2">
-              {[
-                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
-                "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80",
-                "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=100&q=80",
-              ].map((src, i) => (
-                <img key={i} src={src} loading="lazy" decoding="async" className="w-8 h-8 rounded-full border-2 border-[#F4F3F0] object-cover" alt="" />
-              ))}
-            </div>
-            <div className="w-8 h-8 rounded-full bg-[#FF4D00] flex items-center justify-center text-white text-sm font-bold">+</div>
-          </div>
-          <OrangePlus size={24} className="ml-auto mb-2" />
-          <p className="text-3xl font-black text-black">280K</p>
-          <p className="text-[10px] tracking-widest text-gray-500 uppercase">Pelanggan Setia</p>
         </div>
       </div>
     </section>

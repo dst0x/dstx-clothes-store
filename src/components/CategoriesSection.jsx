@@ -1,9 +1,9 @@
-import boomberImg from "../images/catalog/Boomber.png";
-import varsityImg from "../images/catalog/Varsity.png";
-import item1Img from "../images/catalog/Item1.png";
-import woman1Img from "../images/catalog/woman1.png";
-import woman2Img from "../images/catalog/woman2.png";
-import woman3Img from "../images/catalog/woman4.png";
+import boomberImg from "../images/catalog/Boomber.webp";
+import varsityImg from "../images/catalog/Varsity.webp";
+import item1Img from "../images/catalog/Item1.webp";
+import woman1Img from "../images/catalog/woman1.webp";
+import woman2Img from "../images/catalog/woman2.webp";
+import woman3Img from "../images/catalog/woman4.webp";
 
 const CATEGORY_CARDS = [
   {
