@@ -9,7 +9,7 @@ export default defineConfig({
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
         }
-      }
+      } 
     },
     chunkSizeWarningLimit: 1000,
   },
