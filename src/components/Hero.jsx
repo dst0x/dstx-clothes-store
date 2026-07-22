@@ -38,7 +38,7 @@ export default function Hero() {
 
         <div className="flex items-center justify-center min-h-[75vh] relative pt-12">
 
-          <div className="z-10 -mr-24 text-right flex-shrink-0">
+          <div className="z-10 -mr-24 text-right flex-shrink-0 hidden md:block">
             <h1 className="text-[6.5vw] font-bold leading-[0.82] tracking-tighter text-black uppercase">
               YOUR<span className="text-[#FF4D00]"> -</span> <br />
               STYLE
@@ -63,7 +63,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="z-10 -ml-24 text-left flex-shrink-0">
+          <div className="z-10 -ml-24 text-left flex-shrink-0 hidden md:block">
             <h1 className="text-[6.5vw] font-bold leading-[0.82] tracking-tighter text-black uppercase">
               YOUR<br /><span className="text-[#FF4D00]">- </span>RULES
             </h1>

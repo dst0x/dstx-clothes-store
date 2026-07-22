@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import boomberImg from "../images/catalog/Boomber.webp";
 import varsityImg from "../images/catalog/Varsity.webp";
 import item1Img from "../images/catalog/Item1.webp";
@@ -87,9 +88,18 @@ export default function CategoriesSection() {
               <h3 className="text-black text-xl font-bold mb-4">
                 {item.title}
               </h3>
-              <p className="text-gray-500 text-sm leading-relaxed font-light">
+              <p className="text-gray-500 text-sm leading-relaxed font-light mb-6">
                 {item.desc}
               </p>
+              <Link 
+                to={`/category/${item.label.toLowerCase()}`}
+                className="inline-flex items-center justify-center w-full bg-black text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-[#FF4D00] transition-all duration-300 group"
+              >
+                Lihat Lainnya
+                <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
           ))}
         </div>
@@ -115,9 +125,18 @@ export default function CategoriesSection() {
               <h3 className="text-black text-xl font-bold mb-4">
                 {item.title}
               </h3>
-              <p className="text-gray-500 text-sm leading-relaxed font-light">
+              <p className="text-gray-500 text-sm leading-relaxed font-light mb-6">
                 {item.desc}
               </p>
+              <Link 
+                to={`/category/${item.label.toLowerCase()}`}
+                className="inline-flex items-center justify-center w-full bg-black text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-[#FF4D00] transition-all duration-300 group"
+              >
+                Lihat Lainnya
+                <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
           ))}
         </div>

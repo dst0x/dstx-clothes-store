@@ -273,17 +273,7 @@ export default function GallerySection() {
               ))}
             </div>
           </div>
-
-          <div className="mt-8 flex justify-center md:justify-start">
-            <p className="text-[10px] font-bold tracking-[0.2em] text-gray-300 uppercase">
-              Drag or use scroll to explore archive — Yogyakarta, ID
-            </p>
-          </div>
         </div>
-      </div>
-
-      <div className="mt-20">
-        <Ticker />
       </div>
     </section>
   );

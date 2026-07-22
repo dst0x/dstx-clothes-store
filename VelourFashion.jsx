@@ -1,4 +1,5 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar               from "./src/components/Navbar";
 import Hero                 from "./src/components/Hero";
 
@@ -7,41 +8,83 @@ const CategoriesSection    = lazy(() => import("./src/components/CategoriesSecti
 const TestimonialsSection  = lazy(() => import("./src/components/TestimonialsSection"));
 const GallerySection       = lazy(() => import("./src/components/GallerySection"));
 const Footer               = lazy(() => import("./src/components/Footer"));
+const CategoryDetail       = lazy(() => import("./src/components/CategoryDetail"));
+const ProductDetail        = lazy(() => import("./src/components/ProductDetail"));
+
+// Scroll to top component
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF4D00]"></div></div>}>
+        <CategoriesSection />
+        <TestimonialsSection />
+        <GallerySection />
+      </Suspense>
+    </>
+  );
+}
 
 export default function App() {
   return (
-    <div className="font-sans antialiased bg-white">
-      <style>{`
-        * { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, h4 { font-family: 'Inter', sans-serif; font-weight: 700; }
+    <Router>
+      <ScrollToTop />
+      <div className="font-sans antialiased bg-white">
+        <style>{`
+          * { font-family: 'Inter', sans-serif; }
+          h1, h2, h3, h4 { font-family: 'Inter', sans-serif; font-weight: 700; }
 
-        @keyframes ticker {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-25%); }
-        }
+          @keyframes ticker {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-25%); }
+          }
 
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+          .scrollbar-hide::-webkit-scrollbar { display: none; }
+          .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-        html { scroll-behavior: smooth; }
+          html { scroll-behavior: smooth; }
 
-        ::selection { background: #FF4D00; color: #fff; }
-      `}</style>
+          ::selection { background: #FF4D00; color: #fff; }
+        `}</style>
 
-      <Navbar />
+        <Navbar />
 
-      <main>
-        <Hero />
-        <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF4D00]"></div></div>}>
-          <CategoriesSection />
-          <TestimonialsSection />
-          <GallerySection />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route 
+              path="/category/:category" 
+              element={
+                <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF4D00]"></div></div>}>
+                  <CategoryDetail />
+                </Suspense>
+              } 
+            />
+            <Route 
+              path="/category/:category/:productId" 
+              element={
+                <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF4D00]"></div></div>}>
+                  <ProductDetail />
+                </Suspense>
+              } 
+            />
+          </Routes>
+        </main>
+
+        <Suspense fallback={<div className="h-20"></div>}>
+          <Footer />
         </Suspense>
-      </main>
-
-      <Suspense fallback={<div className="h-20"></div>}>
-        <Footer />
-      </Suspense>
-    </div>
+      </div>
+    </Router>
   );
 }

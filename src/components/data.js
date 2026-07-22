@@ -6,6 +6,226 @@ export const CATEGORIES = [
   { id: "05", name: "Shoes",  count: 78  },
 ];
 
+// Category products data
+export const CATEGORY_PRODUCTS = {
+  "BOMBER": [
+    {
+      id: "bomber-1",
+      name: "Classic Black Bomber",
+      price: "Rp 450.000",
+      image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&q=75",
+      category: "BOMBER",
+      description: "Bomber jacket klasik dengan warna hitam solid. Material premium dengan lining polyester yang nyaman."
+    },
+    {
+      id: "bomber-2",
+      name: "Navy Blue Bomber",
+      price: "Rp 425.000",
+      image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&q=75",
+      category: "BOMBER",
+      description: "Bomber jacket navy dengan detail zipper YKK dan pocket samping yang fungsional."
+    },
+    {
+      id: "bomber-3",
+      name: "Olive Green Bomber",
+      price: "Rp 475.000",
+      image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&q=75",
+      category: "BOMBER",
+      description: "Military-inspired bomber dengan warna olive green dan ribbed collar premium."
+    },
+    {
+      id: "bomber-4",
+      name: "Leather Bomber Premium",
+      price: "Rp 850.000",
+      image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&q=75",
+      category: "BOMBER",
+      description: "Premium leather bomber dengan genuine leather dan detail stitching yang elegan."
+    },
+    {
+      id: "bomber-5",
+      name: "Reversible Bomber",
+      price: "Rp 525.000",
+      image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&q=75",
+      category: "BOMBER",
+      description: "Bomber reversible dengan dua pilihan warna dalam satu jacket. Double styling option."
+    },
+    {
+      id: "bomber-6",
+      name: "Printed Bomber",
+      price: "Rp 495.000",
+      image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&q=75",
+      category: "BOMBER",
+      description: "Bomber dengan exclusive print design. Limited edition collection 2026."
+    }
+  ],
+  "VARSITY": [
+    {
+      id: "varsity-1",
+      name: "Classic Varsity Red/White",
+      price: "Rp 550.000",
+      image: "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=500&q=75",
+      category: "VARSITY",
+      description: "Varsity jacket klasik dengan kombinasi merah putih. Wool body dan leather sleeves."
+    },
+    {
+      id: "varsity-2",
+      name: "Blue Heritage Varsity",
+      price: "Rp 575.000",
+      image: "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=500&q=75",
+      category: "VARSITY",
+      description: "Varsity dengan colorway biru navy dan putih. Chenille patches dan snap button."
+    },
+    {
+      id: "varsity-3",
+      name: "Black Gold Varsity",
+      price: "Rp 595.000",
+      image: "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=500&q=75",
+      category: "VARSITY",
+      description: "Premium varsity hitam dengan accent gold. Embroidered details dan satin lining."
+    },
+    {
+      id: "varsity-4",
+      name: "Green Varsity Limited",
+      price: "Rp 625.000",
+      image: "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=500&q=75",
+      category: "VARSITY",
+      description: "Limited edition varsity dengan warna forest green dan cream."
+    },
+    {
+      id: "varsity-5",
+      name: "Vintage Varsity",
+      price: "Rp 650.000",
+      image: "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=500&q=75",
+      category: "VARSITY",
+      description: "Varsity style vintage dengan washed effect. Retro vibes dengan modern fit."
+    },
+    {
+      id: "varsity-6",
+      name: "Oversized Varsity",
+      price: "Rp 595.000",
+      image: "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=500&q=75",
+      category: "VARSITY",
+      description: "Varsity dengan oversized fit untuk streetwear look yang lebih modern."
+    }
+  ],
+  "PREMIUM": [
+    {
+      id: "premium-1",
+      name: "Luxury Wool Coat",
+      price: "Rp 1.250.000",
+      image: "https://images.unsplash.com/photo-1516826957135-700dedea698c?w=500&q=75",
+      category: "PREMIUM",
+      description: "Premium wool coat dengan 80% wool blend. Italian fabric dengan tailored fit."
+    },
+    {
+      id: "premium-2",
+      name: "Cashmere Overcoat",
+      price: "Rp 1.850.000",
+      image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=75",
+      category: "PREMIUM",
+      description: "Luxury cashmere overcoat untuk winter styling. Super soft dan warm."
+    },
+    {
+      id: "premium-3",
+      name: "Suede Jacket Premium",
+      price: "Rp 1.450.000",
+      image: "https://images.unsplash.com/photo-1516826957135-700dedea698c?w=500&q=75",
+      category: "PREMIUM",
+      description: "Premium suede jacket dengan genuine suede leather. Handcrafted details."
+    },
+    {
+      id: "premium-4",
+      name: "Leather Trench Coat",
+      price: "Rp 1.950.000",
+      image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=75",
+      category: "PREMIUM",
+      description: "Full grain leather trench coat. Statement piece untuk sophisticated look."
+    },
+    {
+      id: "premium-5",
+      name: "Designer Parka",
+      price: "Rp 1.550.000",
+      image: "https://images.unsplash.com/photo-1516826957135-700dedea698c?w=500&q=75",
+      category: "PREMIUM",
+      description: "Premium designer parka dengan fur hood detail. Limited production."
+    },
+    {
+      id: "premium-6",
+      name: "Exclusive Blazer",
+      price: "Rp 1.350.000",
+      image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=75",
+      category: "PREMIUM",
+      description: "Tailored blazer dari premium fabric. Perfect untuk formal occasions."
+    }
+  ],
+  "WOMEN": [
+    {
+      id: "women-1",
+      name: "Double Breasted Coat Black",
+      price: "Rp 750.000",
+      image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=75",
+      category: "WOMEN",
+      description: "Elegant double breasted coat dengan premium buttons. Sophisticated silhouette."
+    },
+    {
+      id: "women-2",
+      name: "Emerald Trench Coat",
+      price: "Rp 825.000",
+      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=75",
+      category: "WOMEN",
+      description: "Bold emerald green oversized trench dengan belt detail yang flattering."
+    },
+    {
+      id: "women-3",
+      name: "Cable Knit Cardigan",
+      price: "Rp 425.000",
+      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=75",
+      category: "WOMEN",
+      description: "Cozy oversized cardigan dengan cable knit texture. Perfect for layering."
+    },
+    {
+      id: "women-4",
+      name: "Camel Wool Coat",
+      price: "Rp 895.000",
+      image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=75",
+      category: "WOMEN",
+      description: "Timeless camel coat dari wool blend. Classic piece untuk winter wardrobe."
+    },
+    {
+      id: "women-5",
+      name: "Belted Trench Beige",
+      price: "Rp 775.000",
+      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=75",
+      category: "WOMEN",
+      description: "Classic beige trench coat dengan adjustable belt. Versatile styling option."
+    },
+    {
+      id: "women-6",
+      name: "Oversized Blazer",
+      price: "Rp 595.000",
+      image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=75",
+      category: "WOMEN",
+      description: "Modern oversized blazer untuk power dressing. Sharp cut dengan soft drape."
+    },
+    {
+      id: "women-7",
+      name: "Wool Blend Peacoat",
+      price: "Rp 850.000",
+      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=75",
+      category: "WOMEN",
+      description: "Navy peacoat dengan double breasted button. Nautical inspired design."
+    },
+    {
+      id: "women-8",
+      name: "Quilted Puffer Jacket",
+      price: "Rp 695.000",
+      image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=75",
+      category: "WOMEN",
+      description: "Lightweight quilted puffer dengan slim fit. Warm dan stylish untuk daily wear."
+    }
+  ]
+};
+
 export const TESTIMONIALS = [
   {
     id: 1,
