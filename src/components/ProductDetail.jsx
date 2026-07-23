@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { CATEGORY_PRODUCTS } from "./data";
+import { useCart } from "../context/CartContext";
 
 export default function ProductDetail() {
   const { category, productId } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
+  const productImageRef = useRef(null);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("M");
   const [addedToCart, setAddedToCart] = useState(false);
@@ -41,6 +44,7 @@ export default function ProductDetail() {
     .slice(0, 4);
 
   const handleAddToCart = () => {
+    addToCart(product, quantity, selectedSize, productImageRef.current);
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 3000);
   };
@@ -76,6 +80,7 @@ export default function ProductDetail() {
             <div className="bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-lg">
               <div className="aspect-[3/4] relative">
                 <img
+                  ref={productImageRef}
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover"

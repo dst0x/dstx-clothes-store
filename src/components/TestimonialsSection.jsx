@@ -7,7 +7,7 @@ const TESTIMONIALS = [
   {
     id: 1,
     quote: "Koleksi TiiClothes selalu memberikan sentuhan premium yang berbeda. Kualitas bahan dan jahitannya benar-benar terasa lokal tapi berkelas internasional.",
-    author: "Fauziah Rahma",
+    author: "Tia Rahma",
     role: "Fashion Enthusiast, Yogyakarta",
     stats: [
       { label: "Happy Customers", value: "280K+" },

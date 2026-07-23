@@ -226,6 +226,8 @@ export const CATEGORY_PRODUCTS = {
   ]
 };
 
+export const ALL_PRODUCTS = Object.values(CATEGORY_PRODUCTS).flat();
+
 export const TESTIMONIALS = [
   {
     id: 1,

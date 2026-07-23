@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cx } from "./utils";
 import shopeeLogo from "../images/shopee_logo.png";
 import tokopediaLogo from "../images/tokopedia_logo.png";
+import { useCart } from "../context/CartContext";
+import { ALL_PRODUCTS } from "./data";
 
 const NAV_ITEMS = [
   { name: "Home", href: "#home" },
@@ -13,6 +16,12 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef(null);
+  const { cartCount, cartIconRef } = useCart();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -20,10 +29,23 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (searchOpen) searchInputRef.current?.focus();
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") closeSearch();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [searchOpen]);
+
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setMenuOpen(false);
-    
+
     setTimeout(() => {
       const element = document.querySelector(href);
       if (element) {
@@ -31,6 +53,32 @@ export default function Navbar() {
       }
     }, 300);
   };
+
+  const closeSearch = () => {
+    setSearchOpen(false);
+    setSearchQuery("");
+  };
+
+  const toggleSearch = () => {
+    setMenuOpen(false);
+    setSearchOpen((prev) => {
+      if (prev) setSearchQuery("");
+      return !prev;
+    });
+  };
+
+  const handleCartClick = (e) => {
+    if (location.pathname === "/cart") {
+      e.preventDefault();
+      navigate(-1);
+    }
+  };
+
+  const searchResults = searchQuery.trim()
+    ? ALL_PRODUCTS.filter((p) =>
+        p.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
+      ).slice(0, 6)
+    : [];
 
   return (
     <>
@@ -44,7 +92,10 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => {
+              closeSearch();
+              setMenuOpen(!menuOpen);
+            }}
             className="w-10 h-10 flex flex-col items-center justify-center gap-[5px] group"
             aria-label="Menu"
           >
@@ -53,28 +104,94 @@ export default function Navbar() {
             <span className={cx("w-4 h-[1.5px] bg-black transition-all duration-300", menuOpen && "-rotate-45 -translate-y-[6.5px] w-6")} />
           </button>
 
-          <a href="#" className="flex flex-col items-center">
+          <Link to="/" className="flex flex-col items-center">
             <span className="font-black text-lg tracking-[0.35em] text-black uppercase leading-none">TiiClothes</span>
             <span className="text-[8px] tracking-[0.2em] text-gray-400 uppercase mt-0.5">Yogyakarta Fashion House</span>
-          </a>
+          </Link>
 
           <div className="flex items-center gap-4">
-            <button className="text-black hover:text-[#FF4D00] transition-colors" aria-label="Search">
+            <button
+              onClick={toggleSearch}
+              className={cx("transition-colors", searchOpen ? "text-[#FF4D00]" : "text-black hover:text-[#FF4D00]")}
+              aria-label="Search"
+            >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
               </svg>
             </button>
-            <button className="text-black hover:text-[#FF4D00] transition-colors relative" aria-label="Cart">
+            <Link ref={cartIconRef} to="/cart" onClick={handleCartClick} className="text-black hover:text-[#FF4D00] transition-colors relative" aria-label="Cart">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
                 <line x1="3" y1="6" x2="21" y2="6" />
                 <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
-              <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-[#FF4D00] rounded-full text-[8px] text-white flex items-center justify-center font-bold">2</span>
-            </button>
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-[#FF4D00] rounded-full text-[8px] text-white flex items-center justify-center font-bold">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
       </nav>
+
+      {searchOpen && (
+        <div className="fixed inset-0 z-30 bg-black/20" onClick={closeSearch} />
+      )}
+
+      <div
+        className={cx(
+          "fixed top-0 left-0 right-0 z-40 bg-white shadow-lg transition-all duration-300 pt-20 md:pt-24 pb-6 px-6 md:px-10",
+          searchOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-4 pointer-events-none"
+        )}
+      >
+        <div className="max-w-3xl mx-auto">
+          <div className="relative flex items-center border-b-2 border-black pb-3">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-400 mr-3 flex-shrink-0">
+              <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              ref={searchInputRef}
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Cari produk..."
+              className="flex-1 outline-none text-lg text-black placeholder:text-gray-400"
+            />
+            <button onClick={closeSearch} aria-label="Tutup pencarian" className="text-gray-400 hover:text-black transition-colors ml-3">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+
+          {searchQuery.trim() && (
+            <div className="mt-4 max-h-96 overflow-y-auto divide-y divide-gray-100">
+              {searchResults.length > 0 ? (
+                searchResults.map((product) => (
+                  <Link
+                    key={product.id}
+                    to={`/category/${product.category.toLowerCase()}/${product.id}`}
+                    onClick={closeSearch}
+                    className="flex items-center gap-4 py-3 hover:bg-gray-50 rounded-lg px-2 -mx-2 transition-colors"
+                  >
+                    <img src={product.image} alt={product.name} className="w-12 h-14 object-cover rounded-lg flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-black text-sm line-clamp-1">{product.name}</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide">{product.category}</p>
+                    </div>
+                    <span className="text-[#FF4D00] font-bold text-sm flex-shrink-0">{product.price}</span>
+                  </Link>
+                ))
+              ) : (
+                <p className="py-6 text-center text-sm text-gray-500">
+                  Produk "{searchQuery}" tidak ditemukan
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
 
       <div
         className={cx(

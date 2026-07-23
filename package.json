@@ -1,8 +1,20 @@
 {
   "name": "tiilabs-clt",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
+  "description": "",
+  "homepage": "https://github.com/nana00x/dst0x_clothes_store#readme",
+  "bugs": {
+    "url": "https://github.com/nana00x/dst0x_clothes_store/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nana00x/dst0x_clothes_store.git"
+  },
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "postcss.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

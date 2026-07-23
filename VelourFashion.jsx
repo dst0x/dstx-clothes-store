@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar               from "./src/components/Navbar";
 import Hero                 from "./src/components/Hero";
+import { CartProvider, FlyingCartItems } from "./src/context/CartContext";
 
 const FeaturedSection      = lazy(() => import("./src/components/FeaturedSection"));
 const CategoriesSection    = lazy(() => import("./src/components/CategoriesSection"));
@@ -10,6 +11,7 @@ const GallerySection       = lazy(() => import("./src/components/GallerySection"
 const Footer               = lazy(() => import("./src/components/Footer"));
 const CategoryDetail       = lazy(() => import("./src/components/CategoryDetail"));
 const ProductDetail        = lazy(() => import("./src/components/ProductDetail"));
+const CartPage              = lazy(() => import("./src/components/CartPage"));
 
 // Scroll to top component
 function ScrollToTop() {
@@ -38,8 +40,10 @@ function HomePage() {
 export default function App() {
   return (
     <Router>
+      <CartProvider>
       <ScrollToTop />
       <div className="font-sans antialiased bg-white">
+        <FlyingCartItems />
         <style>{`
           * { font-family: 'Inter', sans-serif; }
           h1, h2, h3, h4 { font-family: 'Inter', sans-serif; font-weight: 700; }
@@ -70,13 +74,21 @@ export default function App() {
                 </Suspense>
               } 
             />
-            <Route 
-              path="/category/:category/:productId" 
+            <Route
+              path="/category/:category/:productId"
               element={
                 <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF4D00]"></div></div>}>
                   <ProductDetail />
                 </Suspense>
-              } 
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF4D00]"></div></div>}>
+                  <CartPage />
+                </Suspense>
+              }
             />
           </Routes>
         </main>
@@ -85,6 +97,7 @@ export default function App() {
           <Footer />
         </Suspense>
       </div>
+      </CartProvider>
     </Router>
   );
 }
